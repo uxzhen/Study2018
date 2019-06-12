@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        html,
+        body {
+            margin: 0;
+        }
+
+        .container {
+            width: 350px;
+            margin: 50px auto;
+            position: relative;
+
+        }
+
+        .autonav {
+            width: 290px;
+            height: 58px;
+            /* border: 1px solid red; */
+            margin: 0 auto;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+
+        }
+
+        ul {
+            width: 406px;
+            list-style: none;
+            padding: 0;
+            font-size: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: .5s;
+        }
+
+        .auto img {
+            width: 54px;
+            height: 54px;
+            display: inline-block;
+            margin: 0 2px;
+            border: 1px solid none;
+
+        }
+
+        /* li:nth-of-type(1){
+            border: 2px solid orangered;
+        } */
+        .active {
+            border: 2px solid orangered;
+            width: 54px;
+            height: 54px;
+        }
+
+        li img {
+            width: 52px;
+            height: 52px;
+
+        }
+
+        .image {
+            width: 350px;
+            height: 350px;
+            /* border: 1px solid #ccc; */
+            position: relative;
+        }
+
+        .image img {
+            width: 350px;
+            height: 350px;
+        }
+
+        .video {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: url(image/video1.png) 0 -55px no-repeat;
+        }
+
+        .ahover a {
+            text-decoration: none;
+            font-size: 60px;
+            color: #666;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .ahover a:nth-of-type(1) {
+            top: 355px;
+            left: 320px;
+        }
+
+        .ahover a:nth-of-type(2) {
+            top: 355px;
+            left: -20px;
+        }
+
+        .ahover a:nth-of-type(3) {
+            left: 150px;
+            top: 150px;
+        }
+
+        .ahover video {
+            width: 350px;
+            height: 350px;
+            /* display: none; */
+        }
+
+        .rundiv {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            /* z-index: 999; */
+            background: rgba(219, 219, 12, 0.63);
+            display: none;
+
+        }
+
+        .bigimg {
+            width: 538px;
+            height: 538px;
+            position: absolute;
+            /* border: 1px solid red; */
+            top: 0;
+            left: 350px;
+            display: none;
+            /* background-image: url(image/video1.png); */
+            overflow: hidden;
+        }
+
+        .bigimg1 {
+            width: 800px;
+            height: 800px;
+            position: absolute;
+
+        }
+
+        video {
+            display: none;
+            z-index: 1000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #666;
+        }
+
+        span {
+            position: absolute;
+            top: 0;
+            left: 340px;
+            z-index: 1001;
+            display: inline-block;
+            display: none;
+
+            width: 50px;
+            height: 50px;
+        }
+
+        .auto img {
+            width: 54px;
+            height: 54px;
+            background: rgba(219, 219, 12, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image">
+            <div class="rundiv"></div>
+
+            <img class="img" src="image/0-0.jpg" alt=""></div>
+        <div class="bigimg"> <img class="bigimg1" src="image/0-0-0.jpg" alt=""></div>
+
+        <div class="autonav">
+            <ul class="auto">
+                <img class="active" src="image/1.jpg" alt="">
+                <img src="image/2.png" alt="">
+                <img src="image/3.jpg" alt="">
+                <img src="image/4.jpg" alt="">
+                <img src="image/5.jpg" alt="">
+                <img src="image/6.jpg" alt="">
+                <img src="image/7.jpg" alt="">
+            </ul>
+        </div>
+        <div class="ahover">
+            <a href="#">&gt;</a>
+            <a href="#">&lt;</a>
+            <a class="video" href="#"></a>
+            <video src="video/Maroon 5 - One More Night.mp4"></video>
+            <span>X</span>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    window.onload = function () {
+        var img = document.querySelector('.image');
+        var image = document.querySelector('.image .img');
+        var ul = document.querySelector('ul')
+        var li = document.querySelectorAll('ul img');
+        var a = document.querySelectorAll('a');
+        var rundiv = document.querySelector('.rundiv');
+        var con = document.querySelector('.container');
+        var bigimg = document.querySelector('.bigimg');
+        var bigimg1 = document.querySelector('.bigimg1');
+        var video = document.querySelector('.video');
+        var video1 = document.querySelector('video');
+        var span = document.querySelector('span');
+        var length = li.length;
+        var left = ul.offsetLeft;
+        console.log(rundiv);
+        video.onclick = function () {
+            console.log(11);
+            video.style.display = 'none';
+            video1.style.display = 'block';
+            span.style.display = 'block';
+            // video1.style.autoplay="autoplay";
+            video1.play();
+        }
+        span.onclick = function () {
+            video1.pause();
+            video1.style.display = 'none';
+            video.style.display = 'block';
+            span.style.display = '';
+        }
+        for (var i = 0; i < length; i++) {
+
+            li[i].index = i;
+            li[i].onmouseover = function () {
+
+
+                for (var k = 0; k < length; k++) {
+                    li[k].className = 'none';
+                }
+                li[this.index].className = 'active';
+                li[this.index].style.width = '54px';
+                li[this.index].style.height = '54px';
+                var c = this.index;
+                image.src = 'image/' + c + '-' + c + '.jpg';
+                bigimg1.src = 'image/' + c + '-' + c + '-' + c + '.jpg';
+            }
+
+            a[1].onclick = function () {
+                if (left > -115) {
+                    left = left - 58;
+                    //   console.log(left);
+                    ul.style.left = left + 'px';
+                }
+            }
+
+            a[0].onclick = function () {
+                if (left < 0) {
+                    left = left + 58;
+                    //   console.log(left);
+                    ul.style.left = left + 'px';
+                }
+            }
+        }
+
+
+
+        img.addEventListener('mousemove', function () {
+            // console.log(event.clientX);
+            // console.log(event.clientY);
+            // console.log(con.offsetLeft);
+            // console.log(con.offsetTop);
+            rundiv.style.display = 'block';
+            var left = event.clientX - con.offsetLeft - 100;
+            var top = event.clientY - con.offsetTop - 100;
+            if (left < 0) {
+                left = 0
+            }
+            if (left > 350 - 200) {
+                left = 150
+            }
+            if (top < 0) {
+                top = 0;
+            }
+            if (top > 150) {
+                top = 150
+            }
+            rundiv.style.left = left + 'px';
+            rundiv.style.top = top + 'px';
+            var left = event.clientX - con.offsetLeft;
+            var top = event.clientY - con.offsetTop;
+            if (left < 0) {
+                left = 0
+            }
+            if (left > 360) {
+                left = 360
+            }
+            if (top < 0) {
+                top = 0;
+            }
+            if (top > 360) {
+                top = 360
+            }
+            bigimg1.style.left = -left + 'px';
+            bigimg1.style.top = -top + 'px';
+
+        })
+        img.onmouseout = function () {
+
+            rundiv.style.display = 'none';
+            bigimg.style.display = 'none';
+        }
+        img.onmouseover = function () {
+            console.log(22);
+            bigimg.style.display = 'block';
+            // bigimg1.src = 'image/2-2-2.jpg';
+        }
+
+
+
+    }
+</script>
